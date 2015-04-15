@@ -6,6 +6,7 @@
 # read command arguments
 args = commandArgs( trailingOnly = T )
 
+# associate local variables with appropriate entries in argument vector
 year         = args[2]
 month        = args[3]
 prodtype     = args[4]
@@ -19,9 +20,6 @@ cfg_suffix   = args[11]
 cfg_base     = args[12]
 base_path    = args[13]
 flist_l2_out = args[14]
-
-## base path of L2 output data
-#base_path ="/scratch/ms/de/sf7/esa_cci_c_proc/CCFLOW/ECFlow_CC4CL_proc/output"
 
 # convert single digit months to double digits
 month_mm = ifelse( nchar( month ) == 1, paste( "0", month, sep="" ), month )
@@ -40,6 +38,7 @@ if ( length( L2_folder ) > 1 ) {
 # extract ID from L2 output folder
 L2_id = paste( "ID", unlist( strsplit( L2_folder, "_ID" ) )[2], sep="" )
 
+# create MPMD config files for each day
 for (i in 1:ndays) {
 
     # convert single digit days to double digits
